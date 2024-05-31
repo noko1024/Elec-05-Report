@@ -1,5 +1,4 @@
 import csv
-import sys
 import datetime
 import matplotlib.pyplot as plt
 
@@ -27,10 +26,22 @@ with open('./tepco2023_4.csv') as csvfile:
             source[week] = data
 
         data = source[week]
-        data[-1].append([day, row[2]])
+        data[-1].append([day, float(row[2])])
         source[week] = data
+
+plot_data = []
+plot_label = []
+for idx, row in enumerate(source['Sun']):
+    data = [list(x) for x in zip(*row)]
+    plot_data.append(data[1])
+    plot_label.append(data[0][0].strftime('%Y/%m/%d'))
+
+
+plt.hist(plot_data, stacked=False, bins=10, label=plot_label)
+
+plt.xlabel('power Consumption (1000kWh)')
+plt.ylabel("Frequency")
 
 plt.legend()
 plt.grid()
 plt.show()
-fig = plt.figure()
