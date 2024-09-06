@@ -30,7 +30,12 @@ with open('./tepco2023_4.csv') as csvfile:
         data[-1].append([day, row[2]])
         source[week] = data
 
+
+
 plt.legend()
 plt.grid()
 plt.show()
+
 fig = plt.figure()
+
+fig.legend()
