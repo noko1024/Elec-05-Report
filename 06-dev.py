@@ -27,15 +27,19 @@ with open('./tepco2023_4.csv') as csvfile:
             source[week] = data
 
         data = source[week]
-        data[-1].append([day, row[2]])
+        data[-1].append([day, int(row[2])])
         source[week] = data
 
+plot_data = []
+plot_label = []
+
+for idx, row in enumerate(source['Sun']):
+    data = [list(x) for x in zip(*row)]
+    label = data[0][0].strftime('%Y/%m/%d')
+    plt.plot(range(len(data[1])), data[1], label=label)
 
 
-plt.legend()
+plt.ylabel('power Consumption (1000kWh)')
+
 plt.grid()
 plt.show()
-
-fig = plt.figure()
-
-fig.legend()
