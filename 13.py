@@ -30,7 +30,7 @@ while True:
         print(len(min_points))
         x = random.uniform(-5, 5)
         y = random.uniform(-5, 5)
-    if len(min_points) > 10:
+    if len(min_points) >= 10:
         break
 
 
@@ -44,6 +44,6 @@ ax.plot_surface(X,Y,Z,cmap=cm.coolwarm,alpha=0.5)
 ax.contour(X,Y,Z,zdir='z',offset=-50,levels=20)
 for i in min_points:
     ax.scatter(i[0],i[1],i[2],color="red")
-    print(i)
 plt.show()
+print(min_points)
 
