@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 
 #AND回路
 def AND(a,b):
@@ -35,12 +37,20 @@ def full_adder(a,b,carry):
 def main():
     data = [[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]]
 
-
+    result = []
     for i in data:
         a = i[0]
         b = i[1]
         carry = i[2]
         s,c = full_adder(a,b,carry)
-        print(a,b,s,c)
+        print(a,b,carry,s,c)
+        result.append([a,b,carry,s,c])
+
+    fig,ax = plt.subplots(figsize=(5,4))
+    ax.axis("off")
+    ax.axis("tight")
+    ax.table(cellText=result,colLabels=["a","b","carry","adder_sum","adder_carry"],loc="center")
+    plt.show()
+
 
 main()
